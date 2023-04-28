@@ -9,6 +9,7 @@ print('https://github.com/xLuckyOne')
 
 
 magnetList = []
+#Edit your Secretkey to allow API access
 secretKey = '?auth_token=SecretKeyGoesHere'
 
 
