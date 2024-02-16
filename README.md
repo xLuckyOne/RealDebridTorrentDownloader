@@ -5,7 +5,7 @@ Info: Downloads all Torrents in the https://real-debrid.com/torrents List, if yo
 *Requieres requests and tqdm import via pip 
 
 (
-python -m pip install requests
+python -m pip install requests ///
 python -m pip install tqdm
 )
 
