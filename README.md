@@ -1,13 +1,18 @@
-Converts Magnets from command line to RD-downloadlinks and automatically starts downloading them
+Automatically checks your clipboard and adds all magnet links to Read Debrid and downloads them.
 
-Info: Downloads all Torrents in the https://real-debrid.com/torrents List, if you already have torrents I would recommend deleting the List before every usage.
 
-*Requires requests and tqdm import via pip 
+Change following variables:
 
-(
-python -m pip install requests ///
-python -m pip install tqdm
-)
 
-*Change the SecretKey to your Secretkey, obtainable via https://real-debrid.com/apitoken
+| Variable        | Content           |
+| ------------- |:-------------:| 
+| secretKey      | your Secretkey, obtainable via https://real-debrid.com/apitoken |
 
+
+| Required Libraries|
+| -------------| 
+| win32clipboard|
+| time|
+| threading|
+| requests|
+| tqdm|
