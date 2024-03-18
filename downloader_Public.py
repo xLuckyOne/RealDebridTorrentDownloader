@@ -4,9 +4,10 @@ import threading
 import requests
 from tqdm import * 
 
-
+#CHANGE ME!
 secretKey = '?auth_token=[SecretkeyGoesHere]'
 
+#Function to get the clipboard data
 def get_clipboard_data():
     win32clipboard.OpenClipboard()
     try:
@@ -16,6 +17,7 @@ def get_clipboard_data():
     win32clipboard.CloseClipboard()
     return data
 
+#Clipboard monitoring thread
 class ClipboardMonitor:
     def __init__(self):
         self.running = True
@@ -46,7 +48,7 @@ def main():
 
     print("Clipboard monitoring started. Enter 'q' to exit.")
 
-    # Wait for user to press 'q'
+    # Wait for user to press 'q' and stop monitoring thread
     while True:
         user_input = input()
         if user_input.lower() == 'q':
@@ -55,13 +57,12 @@ def main():
 
     monitor_thread.join()  # Wait for clipboard monitoring thread to finish
 
-
-    print('DEBUG: Getting all current Torrents')
+    #get current torrents before adding new
     torrentsBeforeAdding = requests.get('https://api.real-debrid.com/rest/1.0/torrents/' + secretKey)
 
 
     print('Monitoring ended, starting downloads')
-
+    
     for downloadTask in magnetList:
         #Add Magnet from downloadTask to Downloadlist 
         postMagnet = requests.post('https://api.real-debrid.com/rest/1.0/torrents/addMagnet' + secretKey ,{'magnet': downloadTask.strip()})
@@ -81,6 +82,7 @@ def main():
     #Get all Torrents in https://real-debrid.com/torrents
     torrentsAfterAdding = requests.get('https://api.real-debrid.com/rest/1.0/torrents' + secretKey)
 
+    #Calculate difference between torrent lists, only downloads newly added torrents, kill this if you want to download everything always.
     torrentsToDownload = [x for x in torrentsAfterAdding.json() if x not in torrentsBeforeAdding.json()]
     print('******** Downloads *************')
     #Get Torrent Objects in Torrent List (https://real-debrid.com/torrents)
