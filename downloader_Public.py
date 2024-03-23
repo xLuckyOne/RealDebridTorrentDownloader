@@ -87,7 +87,7 @@ def main():
     print('******** Downloads *************')
     #Get Torrent Objects in Torrent List (https://real-debrid.com/torrents)
     #For each Torrent
-    for link in torrentsToDownload.json():
+    for link in torrentsToDownload:
         #Display the Filename iteration
         print(link.get('filename'))
         #For Each Downloadlink in Torrent
