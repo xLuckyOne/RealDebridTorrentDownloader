@@ -15,4 +15,6 @@ Change following variables:
 | time|
 | threading|
 | requests|
+| os|
+| re|
 | tqdm|
